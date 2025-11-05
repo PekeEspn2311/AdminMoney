@@ -47,7 +47,7 @@ Ayudar a los usuarios a administrar sus finanzas personales, tener control sobre
 
 ## 🎨 Recursos Visuales
 
-- 🌐 **Mockups y diseño de pantallas:** [Mockups]([https://reactnative.dev/docs/environment-setup](https://drive.google.com/drive/folders/1KtKVzGCmwuYf09Lspnp72JQRQQJA5bM4?usp=sharing))  
+- 🌐 **Mockups y diseño de pantallas:** [Mockups](https://drive.google.com/drive/folders/1KtKVzGCmwuYf09Lspnp72JQRQQJA5bM4?usp=sharing)  
 - 🗃️ **Diagrama Entidad-Relación (Base de Datos):** [Ver DER en dbdiagram.io](https://dbdiagram.io/d/AdminMoney-690b79966735e1117068b94a)
 
 ---
