@@ -25,6 +25,14 @@
       "output": "static",
       "favicon": "./assets/images/favicon.png"
     },
+    "extra": {
+      "apiKey": "AIzaSyCZkiVTtXvm3MKFX8eACFZAN970Tb9uIiA",
+      "authDomain": "adminmoney-f160f.firebaseapp.com",
+      "projectId": "adminmoney-f160f",
+      "storageBucket": "adminmoney-f160f.appspot.com",
+      "messagingSenderId": "943866621785",
+      "appId": "1:943866621785:web:2f67c18b6d63b37f0be648"
+    },
     "plugins": [
       "expo-router",
       [
