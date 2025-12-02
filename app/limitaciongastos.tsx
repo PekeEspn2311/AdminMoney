@@ -66,7 +66,7 @@ export default function LimitacionGastos() {
 
     return (
         <SafeAreaView style={style.limitContainer}>
-            
+
             {/* Back */}
             <TouchableOpacity style={style.backButton} onPress={() => router.push("/configuracion")}>
                 <Ionicons name="arrow-back" size={26} color="black" />
@@ -78,42 +78,41 @@ export default function LimitacionGastos() {
             {/* Tarjeta */}
             <View style={style.limitCard}>
 
-                // --- SELECTOR DROPDOWN ---
-<View style={{ marginBottom: 20 }}>
-    <Text style={style.limitLabel}>Selecciona una categoría</Text>
+                <View style={{ marginBottom: 20 }}>
+                    <Text style={style.limitLabel}>Selecciona una categoría</Text>
 
-    {/* Botón que abre/cierra el dropdown */}
-    <TouchableOpacity
-        style={style.dropdownButton}
-        onPress={() => setShowDropdown(!showDropdown)}
-    >
-        <Text style={style.dropdownButtonText}>
-            {categorias.find((c) => c.value === categoriaSeleccionada)?.label || "Seleccionar categoría"}
-        </Text>
-        <Ionicons name={showDropdown ? "chevron-up" : "chevron-down"} size={22} color="#555" />
-    </TouchableOpacity>
+                    {/* Botón que abre/cierra el dropdown */}
+                    <TouchableOpacity
+                        style={style.dropdownButton}
+                        onPress={() => setShowDropdown(!showDropdown)}
+                    >
+                        <Text style={style.dropdownButtonText}>
+                            {categorias.find((c) => c.value === categoriaSeleccionada)?.label || "Seleccionar categoría"}
+                        </Text>
+                        <Ionicons name={showDropdown ? "chevron-up" : "chevron-down"} size={22} color="#555" />
+                    </TouchableOpacity>
 
-    {/* Lista desplegable */}
-    {showDropdown && (
-    <View style={style.dropdownContainer}>
-        <ScrollView style={{ maxHeight: 200 }}>
-            {categorias.map((cat) => (
-                <TouchableOpacity
-                    key={cat.value}
-                    style={style.dropdownItem}
-                    onPress={() => {
-                        setCategoriaSeleccionada(cat.value);
-                        setShowDropdown(false);
-                    }}
-                >
-                    <Text style={style.dropdownItemText}>{cat.label}</Text>
-                </TouchableOpacity>
-            ))}
-        </ScrollView>
-    </View>
-)}
+                    {/* Lista desplegable */}
+                    {showDropdown && (
+                        <View style={style.dropdownContainer}>
+                            <ScrollView style={{ maxHeight: 200 }}>
+                                {categorias.map((cat) => (
+                                    <TouchableOpacity
+                                        key={cat.value}
+                                        style={style.dropdownItem}
+                                        onPress={() => {
+                                            setCategoriaSeleccionada(cat.value);
+                                            setShowDropdown(false);
+                                        }}
+                                    >
+                                        <Text style={style.dropdownItemText}>{cat.label}</Text>
+                                    </TouchableOpacity>
+                                ))}
+                            </ScrollView>
+                        </View>
+                    )}
 
-</View>
+                </View>
 
 
                 <Text style={style.limitLabel}>Límite de gasto (MXN)</Text>
