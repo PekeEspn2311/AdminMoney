@@ -82,39 +82,40 @@ export default function Transaccion() {
             <View>
 
                 {/* Tipo */}
-                <View style={style.campoTrans}>
-                    <Text style={style.labelTrans}>Tipo de transacción</Text>
+<View style={[style.campoTrans, { position: "relative" }]}>
+    <Text style={style.labelTrans}>Tipo de transacción</Text>
 
-                    <TouchableOpacity onPress={() => setTipo(!tipo)}>
-                        <View style={style.selectRow}>
-                            <TextInput
-                                placeholder="Selecciona tipo"
-                                value={selectedTipo}
-                                editable={false}
-                                style={style.selectInput}
-                            />
-                            <Feather
-                                name={tipo ? "chevron-up" : "chevron-down"}
-                                size={22}
-                                color="black"
-                            />
-                        </View>
+    <TouchableOpacity onPress={() => setTipo(!tipo)}>
+        <View style={style.selectRow}>
+            <TextInput
+                placeholder="Selecciona tipo"
+                value={selectedTipo}
+                editable={false}
+                style={style.selectInput}
+            />
+            <Feather
+                name={tipo ? "chevron-up" : "chevron-down"}
+                size={22}
+                color="black"
+            />
+        </View>
+    </TouchableOpacity>
+
+    {tipo && (
+        <View style={style.dropdownFlotante}>
+            <FlatList
+                data={tipos}
+                keyExtractor={(item) => item}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => handleSelect(item)} style={style.itemOpcion}>
+                        <Text style={style.itemOpcionTexto}>{item}</Text>
                     </TouchableOpacity>
+                )}
+            />
+        </View>
+    )}
+</View>
 
-                    {tipo && (
-                        <View style={style.listaOpciones}>
-                            <FlatList
-                                data={tipos}
-                                keyExtractor={(item) => item}
-                                renderItem={({ item }) => (
-                                    <TouchableOpacity onPress={() => handleSelect(item)} style={style.itemOpcion}>
-                                        <Text style={style.itemOpcionTexto}>{item}</Text>
-                                    </TouchableOpacity>
-                                )}
-                            />
-                        </View>
-                    )}
-                </View>
 
                 {/* Monto */}
                 <View style={style.campoTrans}>
@@ -161,7 +162,8 @@ export default function Transaccion() {
                     </TouchableOpacity>
 
                     {cat && (
-                        <View style={style.listaOpciones}>
+                        
+                        <View style={style.dropdownFlotante}>
                             <FlatList
                                 data={categoria}
                                 keyExtractor={(item) => item}

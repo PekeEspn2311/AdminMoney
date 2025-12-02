@@ -240,15 +240,6 @@ export const style = StyleSheet.create({
         elevation: 2,
     },
 
-    itemOpcion: {
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-    },
-
-    itemOpcionTexto: {
-        fontSize: 15,
-    },
-
     inputTrans: {
         backgroundColor: "#FFF",
         padding: 12,
@@ -772,6 +763,32 @@ dropdownItemText: {
     fontSize: 16,
     color: "#333",
 },
+dropdownFlotante: {
+    position: "absolute",
+    top: 60,
+    left: 0,
+    right: 0,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    paddingVertical: 6,
+    elevation: 10,
+    zIndex: 999,
+    maxHeight: 200, // Scroll interno
+    borderWidth: 1,
+    borderColor: "#ccc",
+},
+
+itemOpcion: {
+    paddingVertical: 12,
+    paddingHorizontal: 15,
+    borderBottomWidth: 1,
+    borderColor: "#eee",
+},
+
+itemOpcionTexto: {
+    fontSize: 16,
+},
+
 
 
 
