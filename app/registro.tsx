@@ -6,7 +6,7 @@ import { Checkbox } from "react-native-paper";
 import { style } from "@/styles/style";
 import Entypo from "@expo/vector-icons/Entypo";
 import { auth, database } from "../src/config/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, collection, addDoc } from "firebase/firestore";
 import { router } from "expo-router";
 
 export default function Registro() {
@@ -29,17 +29,44 @@ export default function Registro() {
         }
 
         try {
+            // Crear usuario en Firebase Auth
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
+            // Guardar datos del usuario en Firestore
             await setDoc(doc(database, "users", user.uid), {
                 name,
                 email,
                 createdAt: new Date(),
             });
 
+            // Categorías por defecto
+            const categoriasBase = [
+                "Transporte",
+                "Hogar",
+                "Educación",
+                "Deudas",
+                "Entretenimiento",
+                "Salud",
+                "Comida",
+                "Ropa"
+            ];
+
+            // Colección de categorías
+            const categoriaRef = collection(database, "categoria");
+
+            // Guardar cada categoría con el UID del usuario y limite = 0
+            for (const nombre of categoriasBase) {
+                await addDoc(categoriaRef, {
+                    nombre,
+                    usuario_id: user.uid,
+                    limite: 0   // ← ← ← AQUI SE AGREGA EL LIMITE INICIAL
+                });
+            }
+
             Alert.alert("Registro exitoso", `Bienvenido ${name}`);
             router.push("/inicio");
+
         } catch (error) {
             console.error(error);
             Alert.alert("Error de registro", "Ocurrió un error al registrarte.");

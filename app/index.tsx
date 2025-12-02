@@ -25,28 +25,27 @@ export default function index() {
             router.push("/inicio");
         } catch (error) {
             console.error(error);
-            Alert.alert("Error de inicio", "Ocurrió un error al iniciar sesión.");
+            Alert.alert("Error de inicio", "Correo o contraseña incorrectos.");
         }
     };
 
     return (
         <SafeAreaView style={style.container}>
 
-            {/* Título principal */}
-            <View>
-                <Text style={style.title}>Toma el control de tus finanzas.</Text>
+            {/* Encabezado del Login */}
+            <View style={style.loginHeader}>
+                <Text style={style.loginTitle}>Bienvenido de nuevo</Text>
+                <Text style={style.loginSubtitle}>Inicia sesión para continuar</Text>
             </View>
 
             {/* Formulario */}
-            <View style={style.formContainer}>
-                
-                <Text style={style.formTitle}>Bienvenido de Nuevo</Text>
+            <View style={style.loginForm}>
 
                 {/* Correo */}
-                <View style={style.inputGroup}>
-                    <Text style={style.label}>Correo Electrónico</Text>
+                <View style={style.loginInputGroup}>
+                    <Text style={style.loginLabel}>Correo Electrónico</Text>
                     <TextInput 
-                        style={style.input}
+                        style={style.loginInput}
                         onChangeText={setEmail}
                         value={email}
                         placeholder='tu@correo.com'
@@ -55,26 +54,27 @@ export default function index() {
                 </View>
 
                 {/* Contraseña */}
-                <View style={style.inputGroup}>
-                    <Text style={style.label}>Contraseña</Text>
+                <View style={style.loginInputGroup}>
+                    <Text style={style.loginLabel}>Contraseña</Text>
+
                     <View>
                         <TextInput 
-                            style={style.input}
+                            style={style.loginInput}
                             onChangeText={setPassword}
                             value={password}
                             secureTextEntry={ocultar}
-                            placeholder='Ingresa tu contraseña'
+                            placeholder='••••••••'
                             placeholderTextColor="#ADB5BD"
                         />
 
                         <TouchableOpacity 
                             onPress={() => setOcultar(!ocultar)} 
-                            style={style.eyeButton}
+                            style={style.loginEyeButton}
                         >
                             <Entypo 
                                 name={ocultar ? 'eye' : 'eye-with-line'} 
                                 size={20} 
-                                color="gray" 
+                                color="#666"
                             />
                         </TouchableOpacity>
                     </View>
@@ -83,16 +83,21 @@ export default function index() {
             </View>
 
             {/* Botones */}
-            <View style={style.buttonsContainer}>
-                <TouchableOpacity style={style.btnPrimary} onPress={iniciarSesion}>
-                    <Text style={style.btnText}>Iniciar Sesión</Text>
+            <View style={style.loginButtons}>
+
+                <TouchableOpacity style={style.loginBtnPrimary} onPress={iniciarSesion}>
+                    <Text style={style.loginBtnText}>Iniciar Sesión</Text>
                 </TouchableOpacity>
 
-                <Text style={style.separator}>O</Text>
+                <Text style={style.loginSeparator}>o</Text>
 
-                <TouchableOpacity style={style.btnSecondary} onPress={() => router.push('/registro')}>
-                    <Text style={style.btnText}>Registrarte</Text>
+                <TouchableOpacity 
+                    style={style.loginBtnSecondary} 
+                    onPress={() => router.push('/registro')}
+                >
+                    <Text style={style.loginBtnTextSecondary}>Registrarte</Text>
                 </TouchableOpacity>
+
             </View>
 
         </SafeAreaView>

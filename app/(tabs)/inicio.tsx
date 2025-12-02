@@ -5,7 +5,7 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { router } from "expo-router";
 import { PieChart } from "react-native-chart-kit";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import { auth, database } from "../src/config/firebase";
+import { auth, database } from "../../src/config/firebase";
 import UltimosRegistros from "@/components/recientes";
 import { style } from "@/styles/style";
 
@@ -82,17 +82,30 @@ export default function Inicio() {
 
                 <PieChart
                     data={chartData}
-                    width={screenWidth - 20}
+                    width={screenWidth - 60}       // <-- más pequeño para que quepan los textos
                     height={220}
                     accessor="population"
                     backgroundColor="transparent"
-                    paddingLeft="15"
-                    center={[0, 0]}
+                    paddingLeft="25"               // <-- deja más espacio al lado derecho
+                    center={[0, 0]}                // <-- centra el pastel
                     absolute
                     chartConfig={{
+                        backgroundColor: "#fff",
+                        backgroundGradientFrom: "#fff",
+                        backgroundGradientTo: "#fff",
+                        decimalPlaces: 2,
                         color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                        propsForLabels: {
+                            fontSize: 12,          // <-- textos más compactos para que no salgan
+                        },
+                        propsForBackgroundLines: {
+                            stroke: "#fff",
+                        },
                     }}
+                    hasLegend={true}
                 />
+
             </View>
 
             <ScrollView style={style.recientesScroll} >
