@@ -266,6 +266,13 @@ export const style = StyleSheet.create({
         alignItems: "center",
         marginTop: 25,
     },
+    btnCerrar: {
+        backgroundColor: "#ff0000ff",
+        padding: 15,
+        borderRadius: 12,
+        alignItems: "center",
+        marginTop: 25,
+    },
 
     txtGuardar: {
         color: "#FFF",

@@ -14,7 +14,7 @@ export default function Configuracion() {
                     style={style.configButton} 
                     onPress={() => router.push("/usuario")}
                 >
-                    <Text style={style.configButtonText}>Usuario</Text>
+                    <Text style={style.configButtonText}>Información del Usuario</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
@@ -29,6 +29,10 @@ export default function Configuracion() {
                     onPress={() => router.push("/limitaciongastos")}
                 >
                     <Text style={style.configButtonText}>Limitaciones de gastos</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={style.btnCerrar}onPress={() => router.push("/")}>
+                    <Text style={style.configButtonText}>Cerrar Sesión</Text>
                 </TouchableOpacity>
 
             </View>
