@@ -8,14 +8,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function(){
     return(
         <SafeAreaView>
-            <ScrollView>
+            <View>
                 <View>
                     <TouchableOpacity style={style.backButton} onPress={() => router.push("/inicio")}>
                 <Ionicons name="arrow-back" size={26} color="black" />
             </TouchableOpacity>
                 </View>
                 <TodosRegistros />
-            </ScrollView>
+            </View>
         </SafeAreaView>
     );
 }

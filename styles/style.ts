@@ -788,6 +788,13 @@ itemOpcion: {
 itemOpcionTexto: {
     fontSize: 16,
 },
+recientesWrapper: {
+    maxHeight: 750,        // Limita el alto
+    overflow: "hidden",    // Evita que el ScrollView se expanda
+    width: "100%",         // Ocupa todo el ancho disponible
+    marginBottom: 10,
+},
+
 
 
 

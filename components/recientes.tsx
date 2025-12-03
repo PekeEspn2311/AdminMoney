@@ -68,6 +68,7 @@ export default function UltimosRegistros() {
                 data={registros}
                 keyExtractor={(item) => item.id}
                 renderItem={renderItem}
+                scrollEnabled={false}
                 ListEmptyComponent={<Text>No hay registros aún.</Text>}
             />
         </View>

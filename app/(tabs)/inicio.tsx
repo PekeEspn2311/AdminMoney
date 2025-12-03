@@ -66,65 +66,73 @@ export default function Inicio() {
     return (
         <SafeAreaView style={style.inicioContainer}>
 
-            <View style={style.balanceContainer}>
-                <Text style={style.balanceTitulo}>
-                    Balance Total: ${balanceTotal.toFixed(2)}
-                </Text>
-            </View>
+            <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{ paddingBottom: 120 }}  // Deja espacio para el botón
+            >
+                <View style={style.balanceContainer}>
+                    <Text style={style.balanceTitulo}>
+                        Balance Total: ${balanceTotal.toFixed(2)}
+                    </Text>
+                </View>
 
-            <View style={style.ingresosEgresosBox}>
-                <Text style={style.ingresoTexto}>Ingresos: ${ingresoTotal.toFixed(2)}</Text>
-                <Text style={style.egresoTexto}>Egresos: ${egresoTotal.toFixed(2)}</Text>
-            </View>
+                <View style={style.ingresosEgresosBox}>
+                    <Text style={style.ingresoTexto}>Ingresos: ${ingresoTotal.toFixed(2)}</Text>
+                    <Text style={style.egresoTexto}>Egresos: ${egresoTotal.toFixed(2)}</Text>
+                </View>
 
-            <View style={style.chartContainer}>
-                <Text style={style.chartTitulo}>Ingresos vs Egresos</Text>
+                <View style={style.chartContainer}>
+                    <Text style={style.chartTitulo}>Ingresos vs Egresos</Text>
 
-                <PieChart
-                    data={chartData}
-                    width={screenWidth - 60}       // <-- más pequeño para que quepan los textos
-                    height={220}
-                    accessor="population"
-                    backgroundColor="transparent"
-                    paddingLeft="25"               // <-- deja más espacio al lado derecho
-                    center={[0, 0]}                // <-- centra el pastel
-                    absolute
-                    chartConfig={{
-                        backgroundColor: "#fff",
-                        backgroundGradientFrom: "#fff",
-                        backgroundGradientTo: "#fff",
-                        decimalPlaces: 2,
-                        color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                        labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-                        propsForLabels: {
-                            fontSize: 12,          // <-- textos más compactos para que no salgan
-                        },
-                        propsForBackgroundLines: {
-                            stroke: "#fff",
-                        },
-                    }}
-                    hasLegend={true}
-                />
+                    <PieChart
+                        data={chartData}
+                        width={screenWidth - 60}
+                        height={220}
+                        accessor="population"
+                        backgroundColor="transparent"
+                        paddingLeft="25"
+                        center={[0, 0]}
+                        absolute
+                        chartConfig={{
+                            backgroundColor: "#fff",
+                            backgroundGradientFrom: "#fff",
+                            backgroundGradientTo: "#fff",
+                            decimalPlaces: 2,
+                            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+                            propsForLabels: {
+                                fontSize: 12,
+                            },
+                            propsForBackgroundLines: {
+                                stroke: "#fff",
+                            },
+                        }}
+                        hasLegend={true}
+                    />
+                </View>
 
-            </View>
-
-            <ScrollView style={style.recientesScroll} >
                 <Text style={style.recientesTitulo}>Movimientos Recientes</Text>
-                <UltimosRegistros />
+
+                <View style={style.recientesWrapper}>
+                    <UltimosRegistros />
+                </View>
+
+
+
+                <View style={style.verMasContainer}>
+                    <TouchableOpacity onPress={() => router.push("/vertodo")}>
+                        <Text style={style.verMasTexto}>Ver más</Text>
+                    </TouchableOpacity>
+                </View>
             </ScrollView>
 
-            <View style={style.verMasContainer}>
-                <TouchableOpacity onPress={() => router.push("/vertodo")}>
-                    <Text style={style.verMasTexto}>Ver más</Text>
-                </TouchableOpacity>
-            </View>
-
+            {/* 👇 ESTE botón debe estar FUERA del ScrollView */}
             <View style={style.botonFlotanteContainer}>
                 <TouchableOpacity onPress={() => router.push("/transaccion")}>
                     <AntDesign name="plus-circle" size={40} color="#000" />
                 </TouchableOpacity>
             </View>
-
         </SafeAreaView>
+
     );
 }
