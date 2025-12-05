@@ -6,8 +6,9 @@ import { router } from "expo-router";
 import { PieChart } from "react-native-chart-kit";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../src/config/firebase";
-import UltimosRegistros from "@/components/recientes";
-import { style } from "@/styles/style";
+import UltimosRegistros from "@/components/Recientes";
+import { inicio } from "@/styles/inicio";
+import { onAuthStateChanged } from "firebase/auth";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -17,11 +18,15 @@ export default function Inicio() {
     const balanceTotal = (ingresoTotal ?? 0) - (egresoTotal ?? 0);
 
     useEffect(() => {
-        const user = auth.currentUser;
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
         if (!user) return;
 
-        const q = query(collection(database, "transacciones"), where("uid", "==", user.uid));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const q = query(
+            collection(database, "transacciones"),
+            where("uid", "==", user.uid)
+        );
+
+        const unsubscribeFirestore = onSnapshot(q, (querySnapshot) => {
             let ingresos = 0;
             let egresos = 0;
 
@@ -35,13 +40,16 @@ export default function Inicio() {
             setEgresoTotal(egresos);
         });
 
-        return () => unsubscribe();
-    }, []);
+        return () => unsubscribeFirestore();
+    });
+
+    return () => unsubscribeAuth();
+}, []);
 
     if (ingresoTotal === null || egresoTotal === null) {
         return (
-            <SafeAreaView style={style.cargandoContainer}>
-                <Text style={style.cargandoTexto}>Cargando...</Text>
+            <SafeAreaView style={inicio.cargandoContainer}>
+                <Text style={inicio.cargandoTexto}>Cargando...</Text>
             </SafeAreaView>
         );
     }
@@ -64,25 +72,25 @@ export default function Inicio() {
     ];
 
     return (
-        <SafeAreaView style={style.inicioContainer}>
+        <SafeAreaView style={inicio.inicioContainer}>
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 120 }}  // Deja espacio para el botón
             >
-                <View style={style.balanceContainer}>
-                    <Text style={style.balanceTitulo}>
+                <View style={inicio.balanceContainer}>
+                    <Text style={inicio.balanceTitulo}>
                         Balance Total: ${balanceTotal.toFixed(2)}
                     </Text>
                 </View>
 
-                <View style={style.ingresosEgresosBox}>
-                    <Text style={style.ingresoTexto}>Ingresos: ${ingresoTotal.toFixed(2)}</Text>
-                    <Text style={style.egresoTexto}>Egresos: ${egresoTotal.toFixed(2)}</Text>
+                <View style={inicio.ingresosEgresosBox}>
+                    <Text style={inicio.ingresoTexto}>Ingresos: ${ingresoTotal.toFixed(2)}</Text>
+                    <Text style={inicio.egresoTexto}>Egresos: ${egresoTotal.toFixed(2)}</Text>
                 </View>
 
-                <View style={style.chartContainer}>
-                    <Text style={style.chartTitulo}>Ingresos vs Egresos</Text>
+                <View style={inicio.chartContainer}>
+                    <Text style={inicio.chartTitulo}>Ingresos vs Egresos</Text>
 
                     <PieChart
                         data={chartData}
@@ -111,23 +119,22 @@ export default function Inicio() {
                     />
                 </View>
 
-                <Text style={style.recientesTitulo}>Movimientos Recientes</Text>
+                <Text style={inicio.recientesTitulo}>Movimientos Recientes</Text>
 
-                <View style={style.recientesWrapper}>
+                <View style={inicio.recientesWrapper}>
                     <UltimosRegistros />
                 </View>
 
 
 
-                <View style={style.verMasContainer}>
+                <View style={inicio.verMasContainer}>
                     <TouchableOpacity onPress={() => router.push("/vertodo")}>
-                        <Text style={style.verMasTexto}>Ver más</Text>
+                        <Text style={inicio.verMasTexto}>Ver más</Text>
                     </TouchableOpacity>
                 </View>
             </ScrollView>
 
-            {/* 👇 ESTE botón debe estar FUERA del ScrollView */}
-            <View style={style.botonFlotanteContainer}>
+            <View style={inicio.botonFlotanteContainer}>
                 <TouchableOpacity onPress={() => router.push("/transaccion")}>
                     <AntDesign name="plus-circle" size={40} color="#000" />
                 </TouchableOpacity>

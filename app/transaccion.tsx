@@ -6,7 +6,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, database } from "../src/config/firebase";
 import { router } from "expo-router";
-import { style } from "@/styles/style";
+import { transaccion } from "@/styles/transaccion";
 
 export default function Transaccion() {
     const [tipo, setTipo] = useState(false);
@@ -73,25 +73,25 @@ export default function Transaccion() {
     };
 
     return (
-        <SafeAreaView style={style.transContainer}>
-            <TouchableOpacity style={style.backButton} onPress={() => router.push("/inicio")}>
+        <SafeAreaView style={transaccion.transContainer}>
+            <TouchableOpacity style={transaccion.backButton} onPress={() => router.push("/inicio")}>
                 <Ionicons name="arrow-back" size={26} color="black" />
             </TouchableOpacity>
-            <Text style={style.tituloTrans}>Nueva Transacción</Text>
+            <Text style={transaccion.tituloTrans}>Nueva Transacción</Text>
 
             <View>
 
                 {/* Tipo */}
-<View style={[style.campoTrans, { position: "relative" }]}>
-    <Text style={style.labelTrans}>Tipo de transacción</Text>
+<View style={[transaccion.campoTrans, { position: "relative" }]}>
+    <Text style={transaccion.labelTrans}>Tipo de transacción</Text>
 
     <TouchableOpacity onPress={() => setTipo(!tipo)}>
-        <View style={style.selectRow}>
+        <View style={transaccion.selectRow}>
             <TextInput
                 placeholder="Selecciona tipo"
                 value={selectedTipo}
                 editable={false}
-                style={style.selectInput}
+                style={transaccion.selectInput}
             />
             <Feather
                 name={tipo ? "chevron-up" : "chevron-down"}
@@ -102,13 +102,13 @@ export default function Transaccion() {
     </TouchableOpacity>
 
     {tipo && (
-        <View style={style.dropdownFlotante}>
+        <View style={transaccion.dropdownFlotante}>
             <FlatList
                 data={tipos}
                 keyExtractor={(item) => item}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => handleSelect(item)} style={style.itemOpcion}>
-                        <Text style={style.itemOpcionTexto}>{item}</Text>
+                    <TouchableOpacity onPress={() => handleSelect(item)} style={transaccion.itemOpcion}>
+                        <Text style={transaccion.itemOpcionTexto}>{item}</Text>
                     </TouchableOpacity>
                 )}
             />
@@ -118,39 +118,39 @@ export default function Transaccion() {
 
 
                 {/* Monto */}
-                <View style={style.campoTrans}>
-                    <Text style={style.labelTrans}>Monto</Text>
+                <View style={transaccion.campoTrans}>
+                    <Text style={transaccion.labelTrans}>Monto</Text>
                     <TextInput
                         placeholder="0.00"
                         value={monto}
                         onChangeText={handleChange}
                         keyboardType="decimal-pad"
-                        style={style.inputTrans}
+                        style={transaccion.inputTrans}
                     />
                 </View>
 
                 {/* Descripción */}
-                <View style={style.campoTrans}>
-                    <Text style={style.labelTrans}>Descripción</Text>
+                <View style={transaccion.campoTrans}>
+                    <Text style={transaccion.labelTrans}>Descripción</Text>
                     <TextInput
                         onChangeText={setDescripcion}
                         value={descripcion}
                         placeholder="Tacos, Netflix, Gym"
-                        style={style.inputTrans}
+                        style={transaccion.inputTrans}
                     />
                 </View>
 
                 {/* Categoría */}
-                <View style={style.campoTrans}>
-                    <Text style={style.labelTrans}>Categoría</Text>
+                <View style={transaccion.campoTrans}>
+                    <Text style={transaccion.labelTrans}>Categoría</Text>
 
                     <TouchableOpacity onPress={() => setCat(!cat)}>
-                        <View style={style.selectRow}>
+                        <View style={transaccion.selectRow}>
                             <TextInput
                                 placeholder="Selecciona categoría"
                                 value={selectedCat}
                                 editable={false}
-                                style={style.selectInput}
+                                style={transaccion.selectInput}
                             />
 
                             <Feather
@@ -163,13 +163,13 @@ export default function Transaccion() {
 
                     {cat && (
                         
-                        <View style={style.dropdownFlotante}>
+                        <View style={transaccion.dropdownFlotante}>
                             <FlatList
                                 data={categoria}
                                 keyExtractor={(item) => item}
                                 renderItem={({ item }) => (
-                                    <TouchableOpacity onPress={() => handleSelectCategoria(item)} style={style.itemOpcion}>
-                                        <Text style={style.itemOpcionTexto}>{item}</Text>
+                                    <TouchableOpacity onPress={() => handleSelectCategoria(item)} style={transaccion.itemOpcion}>
+                                        <Text style={transaccion.itemOpcionTexto}>{item}</Text>
                                     </TouchableOpacity>
                                 )}
                             />
@@ -178,8 +178,8 @@ export default function Transaccion() {
                 </View>
 
                 {/* Guardar */}
-                <TouchableOpacity style={style.btnGuardar} onPress={handleGuardar}>
-                    <Text style={style.txtGuardar}>Guardar</Text>
+                <TouchableOpacity style={transaccion.btnGuardar} onPress={handleGuardar}>
+                    <Text style={transaccion.txtGuardar}>Guardar</Text>
                 </TouchableOpacity>
 
             </View>

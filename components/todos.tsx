@@ -3,7 +3,7 @@ import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { collection, onSnapshot, query, where, orderBy } from "firebase/firestore";
 import { auth, database } from "../src/config/firebase";
 import { router } from "expo-router";
-import { style } from "@/styles/style";
+import { recientes } from "@/styles/recientes";
 
 type Transaccion = {
     id: string;
@@ -47,13 +47,13 @@ export default function TodosRegistros() {
     }, []);
 
     const renderItem = ({ item }: { item: Transaccion }) => (
-        <View style={style.registroItem}>
+        <View style={recientes.registroItem}>
             <TouchableOpacity onPress={() => router.push(`/detalles?id=${item.id}`)}>
-                <Text style={style.registroCategoria}>{item.categoria}</Text>
-                <Text style={style.registroDescripcion}>{item.descripcion}</Text>
-                <Text style={style.registroTipo}>{item.tipo}</Text>
-                <Text style={style.registroMonto}>${item.monto.toFixed(2)}</Text>
-                <Text style={style.registroFecha}>
+                <Text style={recientes.registroCategoria}>{item.categoria}</Text>
+                <Text style={recientes.registroDescripcion}>{item.descripcion}</Text>
+                <Text style={recientes.registroTipo}>{item.tipo}</Text>
+                <Text style={recientes.registroMonto}>${item.monto.toFixed(2)}</Text>
+                <Text style={recientes.registroFecha}>
                     {item.fecha?.toDate ? item.fecha.toDate().toLocaleDateString() : ""}
                 </Text>
             </TouchableOpacity>

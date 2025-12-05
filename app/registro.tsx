@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View, Alert } from 'react-native';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import React from "react";
 import { Checkbox } from "react-native-paper";
-import { style } from "@/styles/style";
+import { registro } from "@/styles/registro";
 import Entypo from "@expo/vector-icons/Entypo";
 import { auth, database } from "../src/config/firebase";
 import { doc, setDoc, collection, addDoc } from "firebase/firestore";
@@ -74,22 +74,22 @@ export default function Registro() {
     };
 
     return (
-        <SafeAreaView style={style.registroContainer}>
+        <SafeAreaView style={registro.registroContainer}>
 
-            <View style={style.campoContainer}>
-                <Text style={style.labelTexto}>Nombre</Text>
+            <View style={registro.campoContainer}>
+                <Text style={registro.labelTexto}>Nombre</Text>
                 <TextInput
-                    style={style.inputRegistro}
+                    style={registro.inputRegistro}
                     onChangeText={setName}
                     value={name}
                     placeholder="Tu nombre"
                 />
             </View>
 
-            <View style={style.campoContainer}>
-                <Text style={style.labelTexto}>Correo Electrónico</Text>
+            <View style={registro.campoContainer}>
+                <Text style={registro.labelTexto}>Correo Electrónico</Text>
                 <TextInput
-                    style={style.inputRegistro}
+                    style={registro.inputRegistro}
                     onChangeText={setEmail}
                     value={email}
                     placeholder="correo@ejemplo.com"
@@ -97,11 +97,11 @@ export default function Registro() {
                 />
             </View>
 
-            <View style={style.campoContainer}>
-                <Text style={style.labelTexto}>Contraseña *</Text>
+            <View style={registro.campoContainer}>
+                <Text style={registro.labelTexto}>Contraseña *</Text>
 
                 <TextInput
-                    style={style.inputRegistro}
+                    style={registro.inputRegistro}
                     onChangeText={setPassword}
                     value={password}
                     secureTextEntry={ocultar}
@@ -110,7 +110,7 @@ export default function Registro() {
 
                 <TouchableOpacity
                     onPress={() => setOcultar(!ocultar)}
-                    style={style.eyeButtonRegistro}
+                    style={registro.eyeButtonRegistro}
                 >
                     <Entypo
                         name={ocultar ? "eye" : "eye-with-line"}
@@ -119,23 +119,23 @@ export default function Registro() {
                     />
                 </TouchableOpacity>
 
-                <Text style={style.textoAdicional}>
+                <Text style={registro.textoAdicional}>
                     Usa 8 o más caracteres con números, letras y símbolos
                 </Text>
             </View>
 
-            <View style={style.checkboxContainerRegistro}>
+            <View style={registro.checkboxContainerRegistro}>
                 <Checkbox
                     status={box ? "checked" : "unchecked"}
                     onPress={() => setBox(!box)}
                 />
-                <Text style={style.textcheckRegistro}>
+                <Text style={registro.textcheckRegistro}>
                     I agree to the Terms and Privacy Policy *
                 </Text>
             </View>
 
-            <TouchableOpacity style={style.btnRegistrar} onPress={crearregistro}>
-                <Text style={style.txtBtnRegistrar}>Registrarse</Text>
+            <TouchableOpacity style={registro.btnRegistrar} onPress={crearregistro}>
+                <Text style={registro.txtBtnRegistrar}>Registrarse</Text>
             </TouchableOpacity>
 
         </SafeAreaView>

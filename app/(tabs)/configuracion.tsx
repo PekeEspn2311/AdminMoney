@@ -1,38 +1,38 @@
-import { style } from "@/styles/style";
+import { configuracion } from "@/styles/configuracion";
 import { router } from "expo-router";
 import { View, Text, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Configuracion() {
     return (
-        <SafeAreaView style={style.configContainer}>
-            <View style={style.configCard}>
+        <SafeAreaView style={configuracion.configContainer}>
+            <View style={configuracion.configCard}>
 
-                <Text style={style.configTitle}>Configuración</Text>
+                <Text style={configuracion.configTitle}>Configuración</Text>
 
                 <TouchableOpacity 
-                    style={style.configButton} 
+                    style={configuracion.configButton} 
                     onPress={() => router.push("/usuario")}
                 >
-                    <Text style={style.configButtonText}>Información del Usuario</Text>
+                    <Text style={configuracion.configButtonText}>Información del Usuario</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    style={style.configButton} 
-                    onPress={() => router.push("/agregarcat")}
+                    style={configuracion.configButton} 
+                    onPress={() => router.push("/agregarCategoria")}
                 >
-                    <Text style={style.configButtonText}>Agregar Categoría</Text>
+                    <Text style={configuracion.configButtonText}>Agregar Categoría</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
-                    style={style.configButton} 
-                    onPress={() => router.push("/limitaciongastos")}
+                    style={configuracion.configButton} 
+                    onPress={() => router.push("/limitacionGastos")}
                 >
-                    <Text style={style.configButtonText}>Limitaciones de gastos</Text>
+                    <Text style={configuracion.configButtonText}>Limitaciones de gastos</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={style.btnCerrar}onPress={() => router.push("/")}>
-                    <Text style={style.configButtonText}>Cerrar Sesión</Text>
+                <TouchableOpacity style={configuracion.btnCerrar}onPress={() => router.push("/login")}>
+                    <Text style={configuracion.configButtonText}>Cerrar Sesión</Text>
                 </TouchableOpacity>
 
             </View>
