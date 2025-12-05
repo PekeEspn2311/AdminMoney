@@ -1,4 +1,4 @@
-import { style } from "@/styles/style";
+import { agregarcategoria } from "@/styles/agregar-categoria";
 import React from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -40,30 +40,30 @@ export default function agregarcat() {
     };
 
     return (
-        <SafeAreaView style={style.catContainer}>
-            {/* ENCABEZADO */}
-            <View style={style.catHeader}>
-                <TouchableOpacity style={style.backButton} onPress={() => router.push("/configuracion")}>
+        <SafeAreaView style={agregarcategoria.catContainer}>
+            
+            <View style={agregarcategoria.catHeader}>
+                <TouchableOpacity style={agregarcategoria.backButton} onPress={() => router.push("/configuracion")}>
                     <Ionicons name="arrow-back" size={26} color="black" />
                 </TouchableOpacity>
 
-                <Text style={style.catTitle}>Agregar categoría nueva</Text>
+                <Text style={agregarcategoria.catTitle}>Agregar categoría nueva</Text>
             </View>
 
-            {/* FORMULARIO */}
-            <View style={style.catForm}>
-                <Text style={style.catLabel}>Nombre de la Categoría</Text>
+            
+            <View style={agregarcategoria.catForm}>
+                <Text style={agregarcategoria.catLabel}>Nombre de la Categoría</Text>
 
                 <TextInput
-                    style={style.catInput}
+                    style={agregarcategoria.catInput}
                     onChangeText={setCategoria}
                     value={categoria}
                     placeholder="Domésticos"
                     placeholderTextColor="#989898"
                 />
 
-                <TouchableOpacity style={style.catButton} onPress={agregarcat}>
-                    <Text style={style.catButtonText}>Agregar</Text>
+                <TouchableOpacity style={agregarcategoria.catButton} onPress={agregarcat}>
+                    <Text style={agregarcategoria.catButtonText}>Agregar</Text>
                 </TouchableOpacity>
             </View>
 

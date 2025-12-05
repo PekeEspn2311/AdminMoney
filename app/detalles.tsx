@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { deleteDoc } from "firebase/firestore";
 import { database } from "../src/config/firebase";
-import { style } from "@/styles/style";
+import { detalles } from "@/styles/detalles";
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 export default function DetalleTransaccion() {
@@ -42,47 +42,47 @@ const eliminarTransaccion = async () => {
 
   if (!transaccion) {
     return (
-      <SafeAreaView style={style.container}>
-        <Text style={style.title}>Cargando...</Text>
+      <SafeAreaView style={detalles.container}>
+        <Text style={detalles.title}>Cargando...</Text>
       </SafeAreaView>
     );
   }
 
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView style={detalles.container}>
       
       
-      <TouchableOpacity style={style.backButton} onPress={() => router.back()}>
+      <TouchableOpacity style={detalles.backButton} onPress={() => router.back()}>
         <Ionicons name="arrow-back" size={22} color="black" />
       </TouchableOpacity>
 
-      <Text style={style.title}>Detalles de la transacción</Text>
+      <Text style={detalles.title}>Detalles de la transacción</Text>
 
      
-      <View style={style.card}>
-        <Text style={style.itemText}>
-          <Text style={style.label}>Categoría: </Text>{transaccion.categoria}
+      <View style={detalles.card}>
+        <Text style={detalles.itemText}>
+          <Text style={detalles.label}>Categoría: </Text>{transaccion.categoria}
         </Text>
 
-        <Text style={style.itemText}>
-          <Text style={style.label}>Monto: </Text>${transaccion.monto}
+        <Text style={detalles.itemText}>
+          <Text style={detalles.label}>Monto: </Text>${transaccion.monto}
         </Text>
 
-        <Text style={style.itemText}>
-          <Text style={style.label}>Tipo: </Text>{transaccion.tipo}
+        <Text style={detalles.itemText}>
+          <Text style={detalles.label}>Tipo: </Text>{transaccion.tipo}
         </Text>
 
-        <Text style={style.itemText}>
-          <Text style={style.label}>Descripción: </Text>{transaccion.descripcion}
+        <Text style={detalles.itemText}>
+          <Text style={detalles.label}>Descripción: </Text>{transaccion.descripcion}
         </Text>
 
-        <Text style={style.itemText}>
-          <Text style={style.label}>Fecha: </Text>
+        <Text style={detalles.itemText}>
+          <Text style={detalles.label}>Fecha: </Text>
           {transaccion.fecha?.toDate().toLocaleString()}
         </Text>
 
         <View>
-          <TouchableOpacity style={style.btnEliminar} onPress={eliminarTransaccion}>
+          <TouchableOpacity style={detalles.btnEliminar} onPress={eliminarTransaccion}>
             <EvilIcons name="trash" size={36} color="red" />
           </TouchableOpacity>
           

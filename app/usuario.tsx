@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect, useState } from "react";
 import { auth, database } from "../src/config/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { style } from "@/styles/style";
+import { usuario } from "@/styles/usuario";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 
@@ -29,8 +29,8 @@ export default function Usuario() {
 
   if (!userData) {
     return (
-      <SafeAreaView style={style.loadingContainerusuario}>
-        <Text style={style.loadingTextusuario}>Cargando usuario...</Text>
+      <SafeAreaView style={usuario.loadingContainerusuario}>
+        <Text style={usuario.loadingTextusuario}>Cargando usuario...</Text>
       </SafeAreaView>
     );
   }
@@ -40,30 +40,30 @@ export default function Usuario() {
     : "No disponible";
 
   return (
-    <SafeAreaView style={style.areausuario}>
+    <SafeAreaView style={usuario.areausuario}>
       <View>
-        <TouchableOpacity style={style.backButton} onPress={() => router.push("/configuracion")}>
+        <TouchableOpacity style={usuario.backButton} onPress={() => router.push("/configuracion")}>
                 <Ionicons name="arrow-back" size={26} color="black" />
             </TouchableOpacity>
-        <Text style={style.titleusuario}>Datos del Usuario</Text>
+        <Text style={usuario.titleusuario}>Datos del Usuario</Text>
 
-        <Text style={style.itemusuario}>
-          <Text style={style.labelusuario}>Nombre: </Text>
+        <Text style={usuario.itemusuario}>
+          <Text style={usuario.labelusuario}>Nombre: </Text>
           {userData.name}
         </Text>
 
-        <Text style={style.itemusuario}>
-          <Text style={style.labelusuario}>Correo: </Text>
+        <Text style={usuario.itemusuario}>
+          <Text style={usuario.labelusuario}>Correo: </Text>
           {userData.email}
         </Text>
 
-        <Text style={style.itemusuario}>
-          <Text style={style.labelusuario}>UID: </Text>
+        <Text style={usuario.itemusuario}>
+          <Text style={usuario.labelusuario}>UID: </Text>
           {userData.uid}
         </Text>
 
-        <Text style={style.itemusuario}>
-          <Text style={style.labelusuario}>Creado: </Text>
+        <Text style={usuario.itemusuario}>
+          <Text style={usuario.labelusuario}>Creado: </Text>
           {fecha}
         </Text>
       </View>
