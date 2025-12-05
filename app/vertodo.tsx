@@ -1,4 +1,4 @@
-import TodosRegistros from "@/components/Todos";
+import TodosRegistros from "@/components/todos";
 import { vertodo } from "@/styles/vertodo";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { router } from "expo-router";
