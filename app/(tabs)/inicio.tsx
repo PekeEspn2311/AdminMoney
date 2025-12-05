@@ -6,7 +6,7 @@ import { router } from "expo-router";
 import { PieChart } from "react-native-chart-kit";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { auth, database } from "../../src/config/firebase";
-import UltimosRegistros from "@/components/Recientes";
+import UltimosRegistros from "@/components/recientes";
 import { inicio } from "@/styles/inicio";
 import { onAuthStateChanged } from "firebase/auth";
 
